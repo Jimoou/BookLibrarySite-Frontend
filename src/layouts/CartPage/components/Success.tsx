@@ -38,7 +38,7 @@ export const Success = () => {
 
   const confirmPayments = async () => {
     if (authState && authState.isAuthenticated) {
-      const url = `${process.env.REACT_APP_API}/payment/secure/confirm`;
+      const url = `${process.env.REACT_APP_API}/payment-histories/secure/confirm`;
       const requestOptions = {
         method: "POST",
         headers: {

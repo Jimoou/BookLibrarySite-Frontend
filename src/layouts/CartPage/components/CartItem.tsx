@@ -93,7 +93,7 @@ export const CartItem = () => {
     addPaymentHistoryRequest: PendingPaymentRequest[]
   ) => {
     if (authState && authState.isAuthenticated) {
-      const url = `${process.env.REACT_APP_API}/payment/secure`;
+      const url = `${process.env.REACT_APP_API}/payment-histories/secure/addpending`;
       const requestOptions = {
         method: "POST",
         headers: {
@@ -111,7 +111,7 @@ export const CartItem = () => {
 
   const deleteFailPayment = async () => {
     if (authState && authState.isAuthenticated) {
-      const url = `${process.env.REACT_APP_API}/payment/secure/delete/fail`;
+      const url = `${process.env.REACT_APP_API}/payment-histories/secure/delete/fail`;
       const requestOptions = {
         method: "DELETE",
         headers: {
@@ -177,7 +177,7 @@ export const CartItem = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       if (authState && authState.isAuthenticated) {
-        const url = `${process.env.REACT_APP_API}/cart/secure`;
+        const url = `${process.env.REACT_APP_API}/cart-items/secure`;
         const requestOptions = {
           method: "GET",
           headers: {
