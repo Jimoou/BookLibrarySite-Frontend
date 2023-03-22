@@ -1,7 +1,7 @@
 import CartItemModel from "../../../models/CartItemModel";
 
 export async function deleteBookInCart(id: number, authState: any) {
-  const url = `${process.env.REACT_APP_API}/cart/secure/delete/item?id=${id}`;
+  const url = `${process.env.REACT_APP_API}/cart-items/secure/delete/item?id=${id}`;
   const requestOptions = {
     method: "PUT",
     headers: {
@@ -15,7 +15,7 @@ export async function deleteBookInCart(id: number, authState: any) {
   }
 }
 export async function addBookInCart(bookId: number, authState: any) {
-  const url = `${process.env.REACT_APP_API}/cart/secure/add/item?bookId=${bookId}`;
+  const url = `${process.env.REACT_APP_API}/cart-items/secure/add/item?bookId=${bookId}`;
   const paymentModel: CartItemModel = new CartItemModel(1, bookId);
   const requestOptions = {
     method: "PUT",
@@ -35,7 +35,7 @@ export async function increaseAmount(
   authState: any,
   amount: number
 ) {
-  const url = `${process.env.REACT_APP_API}/cart/secure/increase/item/amount?id=${id}`;
+  const url = `${process.env.REACT_APP_API}/cart-items/secure/increase/item/amount?id=${id}`;
   const paymentModel: CartItemModel = new CartItemModel(amount, id);
   const requestOptions = {
     method: "PUT",
@@ -56,7 +56,7 @@ export async function decreaseAmount(
   authState: any,
   amount: number
 ) {
-  const url = `${process.env.REACT_APP_API}/cart/secure/decrease/item/amount?id=${id}`;
+  const url = `${process.env.REACT_APP_API}/cart-items/secure/decrease/item/amount?id=${id}`;
   const paymentModel: CartItemModel = new CartItemModel(amount, id);
   const requestOptions = {
     method: "PUT",

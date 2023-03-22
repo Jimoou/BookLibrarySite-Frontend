@@ -22,7 +22,7 @@ export const PaymentHistoryPage = () => {
   useEffect(() => {
     const getPaymentHistory = async () => {
       if (authState && authState.isAuthenticated) {
-        const url = `${process.env.REACT_APP_API}/payment/secure/history`;
+        const url = `${process.env.REACT_APP_API}/payment-histories/secure`;
         const requestOptions = {
           method: "GET",
           headers: {
@@ -54,10 +54,7 @@ export const PaymentHistoryPage = () => {
               {date.split("T")[0]}
             </Typography>
             {paymentHistoryItems.map((item) => (
-              <Card
-                key={item.orderId}
-                sx={{ mt: 3, p: 3, boxShadow: 3, height: 200 }}
-              >
+              <Card sx={{ mt: 3, p: 3, boxShadow: 3, height: 200 }}>
                 <Grid container flexDirection="row">
                   <Grid item xs={12} md={1} container alignItems="center">
                     <CardMedia
