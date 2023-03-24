@@ -1,4 +1,5 @@
 class PaymentHistory {
+  id: number;
   title: string;
   author: string;
   category: number;
@@ -9,6 +10,7 @@ class PaymentHistory {
   paymentDate: string;
   orderId: string;
   constructor(
+    id: number,
     title: string,
     author: string,
     category: number,
@@ -19,6 +21,7 @@ class PaymentHistory {
     paymentDate: string,
     orderId: string
   ) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.category = category;

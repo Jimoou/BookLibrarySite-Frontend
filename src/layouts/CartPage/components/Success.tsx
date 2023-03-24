@@ -1,11 +1,12 @@
 import { useOktaAuth } from "@okta/okta-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessPaymentRequest from "../../../models/SuccessPaymentRequest";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 
 export const Success = () => {
   const { authState } = useOktaAuth();
+  const [httpError, setHttpError] = useState("");
   const isLoading = true;
 
   const location = useLocation();
@@ -25,10 +26,7 @@ export const Success = () => {
     const fetchData = async () => {
       try {
         await confirmPayments();
-        navigate("/success-complete");
-      } catch (error: any) {
-        console.log(error.message);
-      }
+      } catch (error: any) {}
     };
 
     if (authState && authState.isAuthenticated) {
@@ -48,15 +46,42 @@ export const Success = () => {
         body: JSON.stringify(successPaymentRequest),
       };
       await fetch(url, requestOptions)
-        .then((response) => {
-          console.log(response.status);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.status === undefined) {
+            navigate("/success-complete");
+          } else {
+            setHttpError(responseJson.status + "결제에 실패했습니다.");
+          }
         });
     }
   };
-
+  if (httpError) {
+    return (
+      <div
+        className="modal fade show"
+        style={{ display: "block" }}
+        tabIndex={-1}
+        aria-modal="true"
+      >
+        <div className="modal-dialog" style={{ textAlign: "center" }}>
+          <div className="modal-content">
+            <div className="modal-body">{httpError}</div>
+            <div className="modal-footer">
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  window.location.replace("https://localhost:3000/cart")
+                }
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="container mt-5 mb-5">
       <h1>결제중입니다.</h1>
