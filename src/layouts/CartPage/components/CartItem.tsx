@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { tossConfig } from "../../../lib/tossConfig";
 import PendingPaymentRequest from "../../../models/PendingPaymentRequest";
 import CurrentCartItems from "../../../models/CurrentCartItems";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 import {
   decreaseAmount,
   deleteBookInCart,
@@ -209,7 +209,7 @@ export const CartItem = () => {
   };
 
   if (isLoadingCartItems) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {

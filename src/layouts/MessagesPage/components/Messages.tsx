@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useOktaAuth } from "@okta/okta-react";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 import MessageModel from "../../../models/MessageModel";
 import { Pagination } from "../../Utils/Pagination";
 
@@ -50,7 +50,7 @@ export const Messages = () => {
   }, [authState, currentPage]);
 
   if (isLoadingMessages) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {

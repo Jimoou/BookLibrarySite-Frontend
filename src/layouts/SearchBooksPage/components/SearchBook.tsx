@@ -1,4 +1,10 @@
-import { Add, Bolt, Book, Remove, Sell } from "@mui/icons-material";
+import {
+  Add,
+  EnergySavingsLeaf,
+  Book,
+  Remove,
+  Sell,
+} from "@mui/icons-material";
 import {
   Box,
   Card,
@@ -179,9 +185,8 @@ export const SearchBook: React.FC<{ book: BookModel; deleteBook: any }> = (
                 </Typography>
                 <Typography variant="h5">
                   대여 <Book /> : {props.book.coin}{" "}
-                  <Bolt
+                  <EnergySavingsLeaf
                     style={{
-                      color: "yellow",
                       textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
                     }}
                   />

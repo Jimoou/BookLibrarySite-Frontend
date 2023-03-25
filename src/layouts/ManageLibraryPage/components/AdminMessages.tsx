@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AdminMessageRequest from "../../../models/AdminMessageRequest";
 import MessageModel from "../../../models/MessageModel";
 import { Pagination } from "../../Utils/Pagination";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 import { AdminMessage } from "./AdminMessage";
 
 export const AdminMessages = () => {
@@ -58,7 +58,7 @@ export const AdminMessages = () => {
   }, [authState, currentPage, btnSubmit]);
 
   if (isLoadingMessages) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {
