@@ -17,6 +17,7 @@ import RegisterWidget from "./Auth/RegisterWidget";
 import { Success } from "./layouts/CartPage/components/Success";
 import { SuccessPage } from "./layouts/CartPage/components/SuccessPage";
 import { PaymentHistoryPage } from "./layouts/CartPage/components/PaymentHistoryPage";
+import { CoinPage } from "./layouts/CoinPage/CoinPage";
 
 function App() {
   const oktaAuth = new OktaAuth(oktaConfig);
@@ -63,6 +64,7 @@ function App() {
             <Route path="/success" element={<Success />} />
             <Route path="/success-complete" element={<SuccessPage />} />
             <Route path="/payment-histories" element={<PaymentHistoryPage />} />
+            <Route path="/coin" element={<CoinPage />} />
           </Routes>
         </div>
       </Security>
