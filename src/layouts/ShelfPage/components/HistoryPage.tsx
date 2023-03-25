@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CheckoutHistoryModel from "../../../models/CheckoutHistoryModel";
 import { Pagination } from "../../Utils/Pagination";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 
 export const HistoryPage = () => {
   const { authState } = useOktaAuth();
@@ -49,7 +49,7 @@ export const HistoryPage = () => {
   }, [authState, currentPage]);
 
   if (isLoadingHistory) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {

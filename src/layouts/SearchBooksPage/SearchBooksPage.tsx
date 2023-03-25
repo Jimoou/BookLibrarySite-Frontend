@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
 import { Pagination, PaginationItem } from "@mui/material";
-import { SpinnerLoading } from "../Utils/SpinnerLoading";
+import { LinearLoading } from "../Utils/LinearLoading";
 import { SearchBook } from "./components/SearchBook";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryList from "../ManageLibraryPage/components/CategoryList";
@@ -96,7 +96,7 @@ export const SearchBooksPage = () => {
   }, [currentPage, searchUrl, bookDelete]);
 
   if (isLoading) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {

@@ -1,10 +1,10 @@
-import { Bolt } from "@mui/icons-material";
+import { EnergySavingsLeaf } from "@mui/icons-material";
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
 import { addBookInCart } from "../../CartPage/components/PaymentFunction";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 import { LoansModal } from "./LoansModal";
 
 export const Loans = () => {
@@ -91,7 +91,7 @@ export const Loans = () => {
   }, [authState, checkout]);
 
   if (isLoadingUserLoans) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {
@@ -173,8 +173,7 @@ export const Loans = () => {
                       </div>
                       <div className="card-text">
                         <h5>
-                          {shelfCurrentLoan.book.coin}{" "}
-                          <Bolt style={{ color: "yellow" }} />
+                          {shelfCurrentLoan.book.coin} <EnergySavingsLeaf />
                         </h5>
                       </div>
                     </div>
@@ -279,8 +278,7 @@ export const Loans = () => {
                   </div>
                   <div className="card-text">
                     <h5>
-                      {shelfCurrentLoan.book.coin}{" "}
-                      <Bolt style={{ color: "yellow" }} />
+                      {shelfCurrentLoan.book.coin} <EnergySavingsLeaf />
                     </h5>
                   </div>
                 </div>

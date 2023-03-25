@@ -9,6 +9,7 @@ import {
   Box,
   CardMedia,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const PaymentHistoryPage = () => {
   const { authState } = useOktaAuth();
@@ -48,11 +49,14 @@ export const PaymentHistoryPage = () => {
       {httpError && <div>{httpError}</div>}
       <Box>
         {Object.entries(paymentHistories).map(
-          ([orderId, paymentHistoryItems]) => (
-            <Box key={orderId} mt={3}>
-              {paymentHistoryItems.map((item) => (
+          ([date, paymentHistoryItems], index) => (
+            <Box key={index} mt={3}>
+              <Typography variant="h5" component="h5" gutterBottom>
+                {date.split(" ")[0]}
+              </Typography>
+              {paymentHistoryItems.map((item, index) => (
                 <Card
-                  key={item.id}
+                  key={index}
                   sx={{ mt: 3, p: 3, boxShadow: 3, height: 200 }}
                 >
                   <Grid container flexDirection="row">
@@ -107,10 +111,6 @@ export const PaymentHistoryPage = () => {
                       alignItems="center"
                     >
                       <Grid>
-                        <Typography variant="h6">
-                          구매일 : {item.paymentDate.split("T")[0]}
-                        </Typography>
-
                         <Typography variant="h6">
                           수량 : {item.amount}
                         </Typography>

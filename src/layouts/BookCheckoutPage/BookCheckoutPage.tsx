@@ -4,7 +4,7 @@ import BookModel from "../../models/BookModel";
 import ReviewModel from "../../models/ReviewModel";
 import ReviewRequest from "../../models/ReviewRequest";
 import { addBookInCart } from "../CartPage/components/PaymentFunction";
-import { SpinnerLoading } from "../Utils/SpinnerLoading";
+import { LinearLoading } from "../Utils/LinearLoading";
 import { StarsReview } from "../Utils/StarsReview";
 import { CheckOutAndReviewBox } from "./CheckoutAndReviewBox";
 import { LatestReviews } from "./LatestReviews";
@@ -208,7 +208,7 @@ export const BookCheckoutPage = () => {
     isLoadingBookCheckedOut ||
     isLodingUserReview
   ) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
 
   if (httpError) {
@@ -220,7 +220,7 @@ export const BookCheckoutPage = () => {
   }
 
   async function checkoutBook() {
-    const url = `${process.env.REACT_APP_API}/books/secure/checkout/?bookId=${book?.id}`;
+    const url = `${process.env.REACT_APP_API}/books/secure/checkout/?bookId=${book?.id}&amount=${book?.coin}`;
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -233,6 +233,7 @@ export const BookCheckoutPage = () => {
       throw new Error("Something went wrong!");
     }
     setIsCheckedOut(true);
+    setIsLoading(true);
   }
 
   async function submitReview(starInput: number, reviewDescription: string) {
@@ -296,17 +297,21 @@ export const BookCheckoutPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={4}>
-          <CheckOutAndReviewBox
-            book={book}
-            mobile={false}
-            currentLoansCount={currentLoansCount}
-            isAuthenticated={authState?.isAuthenticated}
-            isCheckedOut={isCheckedOut}
-            checkoutBook={checkoutBook}
-            isReviewLeft={isReviewLeft}
-            submitReview={submitReview}
-            addBookInCart={() => putBookInCart()}
-          />
+          {isLoading ? (
+            <LinearLoading />
+          ) : (
+            <CheckOutAndReviewBox
+              book={book}
+              mobile={false}
+              currentLoansCount={currentLoansCount}
+              isAuthenticated={authState?.isAuthenticated}
+              isCheckedOut={isCheckedOut}
+              checkoutBook={checkoutBook}
+              isReviewLeft={isReviewLeft}
+              submitReview={submitReview}
+              addBookInCart={() => putBookInCart()}
+            />
+          )}
         </Grid>
       </Grid>
       <Divider sx={{ my: 4 }} />

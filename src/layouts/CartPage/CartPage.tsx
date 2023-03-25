@@ -2,65 +2,47 @@ import { useOktaAuth } from "@okta/okta-react";
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "./components/CartItem";
 import { PaymentHistoryPage } from "./components/PaymentHistoryPage";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
+import { useState } from "react";
 
 export const CartPage = () => {
   const navigate = useNavigate();
   const { authState } = useOktaAuth();
+  const [value, setValue] = useState(0);
 
+  const handleChange = (event: any, newValue: any) => {
+    setValue(newValue);
+  };
   if (!authState?.isAuthenticated) {
     navigate("/login");
   }
 
   return (
-    <div className="container">
-      <div className="mt-3">
-        <nav>
-          <div className="nav nav-tabs" id="nav-tab" role="tablist">
-            <button
-              className="nav-link active"
-              id="nav-loans-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-loans"
-              type="button"
-              role="tab"
-              aria-controls="nav-loans"
-              aria-selected="true"
-            >
-              내 장바구니
-            </button>
-            <button
-              className="nav-link"
-              id="nav-history-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-history"
-              type="button"
-              role="tab"
-              aria-controls="nav-history"
-              aria-selected="false"
-            >
-              구매 내역
-            </button>
-          </div>
-        </nav>
-        <div className="tab-content" id="nav-tabContent">
-          <div
-            className="tab-pane fade show active"
-            id="nav-loans"
-            role="tabpanel"
-            aria-labelledby="nav-loans-tab"
-          >
+    <Box className="container" mt={3}>
+      <Box>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs"
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab label="내 장바구니" id="nav-loans-tab" />
+          <Tab label="구매 내역" id="nav-history-tab" />
+        </Tabs>
+      </Box>
+      <Box>
+        {value === 0 && (
+          <Typography component="div" role="tabpanel">
             <CartItem />
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-history"
-            role="tabpanel"
-            aria-labelledby="nav-history-tab"
-          >
+          </Typography>
+        )}
+        {value === 1 && (
+          <Typography component="div" role="tabpanel">
             <PaymentHistoryPage />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Typography>
+        )}
+      </Box>
+    </Box>
   );
 };

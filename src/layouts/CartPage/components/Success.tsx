@@ -1,8 +1,8 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SuccessPaymentRequest from "../../../models/SuccessPaymentRequest";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 
 export const Success = () => {
   const { authState } = useOktaAuth();
@@ -19,8 +19,6 @@ export const Success = () => {
     orderId,
     amount
   );
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +47,7 @@ export const Success = () => {
         .then((response) => response.json())
         .then((responseJson) => {
           if (responseJson.status === undefined) {
-            navigate("/success-complete");
+            window.location.replace("/success-complete");
           } else {
             setHttpError(responseJson.status + "결제에 실패했습니다.");
           }
@@ -85,7 +83,7 @@ export const Success = () => {
   return (
     <div className="container mt-5 mb-5">
       <h1>결제중입니다.</h1>
-      <h2>{isLoading && <SpinnerLoading />}</h2>
+      <h2>{isLoading && <LinearLoading />}</h2>
     </div>
   );
 };

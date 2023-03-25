@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReviewModel from "../../../models/ReviewModel";
 import { Container, Box, Typography, Grid, Pagination } from "@mui/material";
 import { Review } from "../../Utils/Review";
-import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+import { LinearLoading } from "../../Utils/LinearLoading";
 
 export const ReviewListPage = () => {
   const [reviews, setReviews] = useState<ReviewModel[]>([]);
@@ -59,7 +59,7 @@ export const ReviewListPage = () => {
   }, [currentPage, reviewsPerPage]);
 
   if (isLoading) {
-    return <SpinnerLoading />;
+    return <LinearLoading />;
   }
   if (httpError) {
     return (
