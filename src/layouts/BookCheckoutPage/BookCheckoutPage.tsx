@@ -8,7 +8,18 @@ import { LinearLoading } from "../Utils/LinearLoading";
 import { StarsReview } from "../Utils/StarsReview";
 import { CheckOutAndReviewBox } from "./CheckoutAndReviewBox";
 import { LatestReviews } from "./LatestReviews";
-import { Box, Container, Grid, Typography, Divider } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Divider,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const BookCheckoutPage = () => {
   const { authState } = useOktaAuth();
@@ -16,6 +27,8 @@ export const BookCheckoutPage = () => {
   const [book, setBook] = useState<BookModel>();
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   //Review State
   const [reviews, setReviews] = useState<ReviewModel[]>([]);
@@ -219,6 +232,13 @@ export const BookCheckoutPage = () => {
     );
   }
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleCharge = () => {
+    navigate("/coin");
+  };
+
   async function checkoutBook() {
     const url = `${process.env.REACT_APP_API}/books/secure/checkout/?bookId=${book?.id}&amount=${book?.coin}`;
     const requestOptions = {
@@ -229,8 +249,9 @@ export const BookCheckoutPage = () => {
       },
     };
     const checkoutResponse = await fetch(url, requestOptions);
+    const checkoutResponseJson = checkoutResponse.json();
     if (!checkoutResponse.ok) {
-      throw new Error("Something went wrong!");
+      setOpen(true);
     }
     setIsCheckedOut(true);
     setIsLoading(true);
@@ -316,6 +337,22 @@ export const BookCheckoutPage = () => {
       </Grid>
       <Divider sx={{ my: 4 }} />
       <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
+
+      <Container>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>
+            {"코인이 부족합니다. 충전 페이지로 이동하시겠습니까?"}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              취소
+            </Button>
+            <Button onClick={handleCharge} color="primary">
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
     </Container>
   );
 };

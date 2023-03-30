@@ -168,7 +168,7 @@ export const CheckOutAndReviewBox: React.FC<{
 
         {authState?.isAuthenticated && (
           <>
-            <Button variant="contained" color="info">
+            <Button variant="contained" color="info" disabled>
               바로구매
             </Button>
             <Button

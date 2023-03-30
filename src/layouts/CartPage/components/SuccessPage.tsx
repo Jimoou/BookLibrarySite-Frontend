@@ -30,7 +30,7 @@ export const SuccessPage = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => alert("결제 내역을 확인합니다.")}
+            onClick={() => window.location.replace("/cart")}
             sx={{ mb: 2 }}
           >
             결제 내역
@@ -38,7 +38,7 @@ export const SuccessPage = () => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={() => alert("책을 보러 갑니다.")}
+            onClick={() => window.location.replace("/search")}
             sx={{ mb: 2 }}
           >
             책 보러가기
