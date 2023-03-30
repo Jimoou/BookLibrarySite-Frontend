@@ -69,7 +69,9 @@ export const Success = () => {
               <button
                 className="btn btn-primary"
                 onClick={() =>
-                  window.location.replace("https://localhost:3000/cart")
+                  window.location.replace(
+                    "https://springboot-library-add4e.web.app/cart"
+                  )
                 }
               >
                 확인

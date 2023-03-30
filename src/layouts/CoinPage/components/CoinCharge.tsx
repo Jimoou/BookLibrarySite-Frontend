@@ -62,8 +62,8 @@ export const CoinCharge = () => {
       .requestPayment({
         orderId: generatedOrderId,
         orderName: orderName,
-        successUrl: "https://localhost:3000/success",
-        failUrl: "https://localhost:3000/fail",
+        successUrl: "https://springboot-library-add4e.web.app/success",
+        failUrl: "https://springboot-library-add4e.web.app/fail",
         customerEmail: userEmail,
         customerName: userName,
       })
