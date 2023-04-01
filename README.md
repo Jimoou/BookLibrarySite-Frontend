@@ -11,10 +11,10 @@
    3-2. [API](#rest-api)
 
 4. [기술 및 방법론](#기술-및-방법론)  
-   4-1. [Test Code](#4-1-testcode-withtdd)
+   4-1. [Test Code](#4-1-testcode-withtdd)  
    4-2. [Okta](#okta)  
-   4-3. [TossPayments](#tosspayments)
-   4-4. [의존성](#4-4-의존성)
+   4-3. [TossPayments](#tosspayments)  
+   4-4. [의존성](#4-4-의존성)  
    4-5. [스택](#4-5-스택)
 
 ## 1. 설명
